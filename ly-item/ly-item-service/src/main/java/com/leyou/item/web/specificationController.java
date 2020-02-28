@@ -82,7 +82,7 @@ public class specificationController {
     @PostMapping("group")
     public  ResponseEntity<Void> insertGroup(@RequestBody SpecGroup specGroup){
         specificationService.insertGroup(specGroup);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().build() ;
     }
 
 
