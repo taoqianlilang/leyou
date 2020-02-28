@@ -1,6 +1,7 @@
 package com.leyou.item.web;
 
 import com.leyou.item.pojo.SpecGroup;
+import com.leyou.item.pojo.SpecParam;
 import com.leyou.item.service.SpecificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +21,9 @@ import java.util.List;
 @RestController
 @RequestMapping("spec")
 public class specificationController {
+
     @Autowired
     private SpecificationService specificationService;
-
 /**
  *
  * @Description:根据分类id查询规格组 
@@ -37,7 +38,6 @@ public class specificationController {
     public ResponseEntity<List<SpecGroup>> querySpecGroupByCid(@PathVariable("cid") Long cid ){
         return ResponseEntity.ok(specificationService.querySpecGroupByCid(cid));
     }
-
 /**
  *
  * @Description: 更改组名称
@@ -78,12 +78,66 @@ public class specificationController {
      * @return: org.springframework.http.ResponseEntity<java.lang.Void>
      *
      */
-
     @PostMapping("group")
     public  ResponseEntity<Void> insertGroup(@RequestBody SpecGroup specGroup){
         specificationService.insertGroup(specGroup);
         return ResponseEntity.ok().build() ;
     }
+
+    /**
+     *
+     * @Description: 通过组id获得组内信息
+     *
+     * @auther: taoqianlilang
+     * @date: 11:03 2020/2/28
+     * @param: [gid]
+     * @return: org.springframework.http.ResponseEntity<java.util.List<com.leyou.item.pojo.SpecParam>>
+     *
+     */
+    @GetMapping("params")
+    public ResponseEntity<List<SpecParam>> querySpecParamByGid(@RequestParam("gid") Long gid){
+        return ResponseEntity.ok(specificationService.querySpecParamByGid(gid));
+    }
+    /**
+     *
+     * @Description: 新增加SpecParam
+     *
+     * @auther: taoqianlilang
+     * @date: 13:29 2020/2/28
+     * @param: [specParam]
+     * @return: org.springframework.http.ResponseEntity<java.lang.Void>
+     *
+     */
+    @PostMapping("param")
+    public ResponseEntity<Void> insertSpecParam(@RequestBody SpecParam specParam){
+        specificationService.insertSpecParam(specParam);
+        return ResponseEntity.ok().build();
+    }
+    /**
+     *
+     * @Description: 通过id删除SpecParam
+     *
+     * @auther: taoqianlilang
+     * @date: 13:37 2020/2/28
+     * @param: [id]
+     * @return: org.springframework.http.ResponseEntity<java.lang.Void>
+     *
+     */
+    @DeleteMapping("param/{id}")
+    public ResponseEntity<Void> deleteSpecParamById(@PathVariable("id") Long id){
+        specificationService.deleteSpecParamById(id);
+        return ResponseEntity.ok().build();
+    }
+
+
+
+    @PutMapping("param")
+    public ResponseEntity<Void> updateSpecParam(@RequestBody SpecParam specParam){
+        specificationService.updateSpecParam(specParam);
+        return ResponseEntity.ok().build();
+    }
+
+
 
 
 

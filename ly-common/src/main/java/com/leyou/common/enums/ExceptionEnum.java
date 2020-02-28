@@ -17,8 +17,9 @@ public enum ExceptionEnum {
     FILE_TYPE_ERROR(400,"文件类型不匹配"),
     UPLOAD_FILE_ERROR(404,"上传文件失败"),
     UPDATE_DEFAULT(404,"更新失败"),
-    DELETE_ERROR(400,"删除失败"),
-    INSERT_ERROR(404,"插入失败"),
+    DELETE_DEFAULT(400,"删除失败"),
+    INSERT_DEFAULT(404,"插入失败"),
+    FIND_DEFAULT(404,"查询失败"),
     ;
     private Integer code;
     private String massage;
