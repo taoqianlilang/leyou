@@ -18,7 +18,6 @@ public class CategoryService {
     private CategoryMapper categoryMapper;
 
     public List<Category> queryCategoryByPid(Long pid) {
-
         Category t=new Category();
         t.setParentId(pid);
         List<Category> categories = categoryMapper.select(t);
@@ -26,5 +25,12 @@ public class CategoryService {
             throw new LyException(ExceptionEnum.CATEGORY_CANNOT_FOND);
         }
         return categories;
+    }
+    public List<Category> queryByIds(List<Long> ids){
+        List<Category> list = categoryMapper.selectByIdList(ids);
+        if (CollectionUtils.isEmpty(list)){
+            throw new LyException(ExceptionEnum.CATEGORY_CANNOT_FOND);
+        }
+        return list;
     }
 }
