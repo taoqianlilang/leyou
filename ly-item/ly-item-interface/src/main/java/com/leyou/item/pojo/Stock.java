@@ -1,7 +1,6 @@
 package com.leyou.item.pojo;
 
 import lombok.Data;
-import tk.mybatis.mapper.annotation.KeySql;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -15,12 +14,16 @@ import javax.persistence.Table;
  * @return:
  *
  */
+@Table(name = "tb_stock")
 @Data
-@Table(name = "tb_spec_group")
-public class SpecGroup {
+public class Stock {
+
     @Id
-    @KeySql(useGeneratedKeys = true)
-    private  Long id;
-    private  Long cid;
-    private  String name;
+    private Long skuId;
+
+    private Integer seckillStock;// 秒杀可用库存
+
+    private Integer seckillTotal;// 已秒杀数量
+
+    private Integer stock;// 正常库存
 }

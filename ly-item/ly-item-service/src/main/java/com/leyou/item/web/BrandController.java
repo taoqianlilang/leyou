@@ -49,6 +49,10 @@ public class BrandController {
         brandService.SaveBrand(brand,cids);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+    @GetMapping("cid/{cid}")
+    public ResponseEntity<List<Brand>> queryByCategoryId(@PathVariable("cid") Long cid){
+        return ResponseEntity.ok( brandService.queryByCategoryId(cid));
+    }
 
 
 }

@@ -86,7 +86,7 @@ public class specificationController {
 
     /**
      *
-     * @Description: 通过组id获得组内信息
+     * @Description:
      *
      * @auther: taoqianlilang
      * @date: 11:03 2020/2/28
@@ -95,8 +95,11 @@ public class specificationController {
      *
      */
     @GetMapping("params")
-    public ResponseEntity<List<SpecParam>> querySpecParamByGid(@RequestParam("gid") Long gid){
-        return ResponseEntity.ok(specificationService.querySpecParamByGid(gid));
+    public ResponseEntity<List<SpecParam>> querySpecParamByList(
+            @RequestParam(value = "gid",required = false) Long gid,
+            @RequestParam(value = "cid",required = false) Long cid,
+            @RequestParam(value = "searching",required = false) Boolean searching){
+        return ResponseEntity.ok(specificationService.querySpecParamByList(gid,cid,searching));
     }
     /**
      *
@@ -128,9 +131,16 @@ public class specificationController {
         specificationService.deleteSpecParamById(id);
         return ResponseEntity.ok().build();
     }
-
-
-
+    /**
+     *
+     * @Description: 更改SpecParam信息
+     *
+     * @auther: taoqianlilang
+     * @date: 下午 11:05 2020/2/29
+     * @param: [specParam]
+     * @return: org.springframework.http.ResponseEntity<java.lang.Void>
+     *
+     */
     @PutMapping("param")
     public ResponseEntity<Void> updateSpecParam(@RequestBody SpecParam specParam){
         specificationService.updateSpecParam(specParam);
